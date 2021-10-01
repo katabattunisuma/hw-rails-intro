@@ -93,7 +93,7 @@ class MoviesController < ApplicationController
     private
     # Making "internal" methods private is not required, but is a common practice.
     # This helps make clear which methods respond to requests, and which ones do not.
-    def movie_params
+    def param_list
       params.require(:movie).permit(:title, :rating, :description, :release_date)
     end
 end
