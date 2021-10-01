@@ -36,7 +36,7 @@ class MoviesController < ApplicationController
       if !params[:ratings].nil?
         ratings = params[:ratings].keys
       else
-        ratings = @all_ratings
+        ratings = ['G','PG','PG-13','R']
       end
       if order_by=='release_date'
         @order_by = order_by
