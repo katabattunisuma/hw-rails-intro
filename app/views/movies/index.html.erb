@@ -18,13 +18,14 @@ class: 'form-check-input' %>
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-       <th class="<%= ("highlight" if @selected == "title") %>">
+       <th class="<%= ("selected" if @selected == "title") %>">
         <%= link_to 'Movie Title', movies_path(:sort => 'title', :ratings =>@ratings_to_show.product([1]).to_h), :id => 'title_header' %>
       </th>
       <th>Rating</th>
-      <th>Release Date</th>
-      <th class="<%= ("highlight" if @selected == "release_date") %>">
+      
+      <th class="<%= ("selected" if @selected == "release_date") %>">
       <%= link_to 'Release Date', movies_path(:sort => 'release_date', :ratings =>@ratings_to_show.product([1]).to_h), :id => 'release_date_header' %></th>
+      <th>Movie Info</th>
   </thead>
   <tbody>
     <% @movies.each do |movie| %>

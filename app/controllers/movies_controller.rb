@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
   
     def index
       ratings = params[:ratings]
-   @all_ratings = Movie.all_ratings
+      @all_ratings = Movie.all_ratings
 
     if (request.referrer).nil?
       session.clear
@@ -30,7 +30,7 @@ class MoviesController < ApplicationController
       @movies = Movie.used_ratings(@ratings_to_show, session[:sort])
       session[:ratings] = params[:rating]
     #When returning from another pager it should remember the ratings/sort 
-    elsif (params[:ratings].nil? && !session[:ratings].nil?) || (params[:sort].nil? && !session[:sort].nil?)
+    elsif (!session[:sort].nil? && params[:sort].nil?) || ( !session[:ratings].nil? && params[:ratings].nil?) 
       redirect_to movies_path("ratings" => session[:ratings], "sort" => session[:sort])
 
     else
@@ -52,7 +52,7 @@ class MoviesController < ApplicationController
       end
 
       @ratings_to_show = ratings
-      @movies = Movie.used_ratings(@ratings_to_show, @sort_by)
+      @movies = Movie.with_ratings(@ratings_to_show, @sort_by)
 
 
     end
