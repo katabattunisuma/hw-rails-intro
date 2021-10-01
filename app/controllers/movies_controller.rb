@@ -24,8 +24,10 @@ class MoviesController < ApplicationController
     if (params[:ratings].nil? and params[:commit]=="Refresh")
       @check_boxes = []
       @movies = Movie.use_ratings(@check_boxes, session[:sort])
-      session[:ratings] = params[:rating]
-      
+      p session[:parms]
+      p session[:ratings]
+      session[:ratings] = @all_ratings.product([1]).to_h
+      redirect_to movies_path("ratings" => session[:ratings], "sort" => session[:sort])
     #When returning from another pager it should remember the ratings/sort 
     elsif (params[:ratings].nil? && !session[:ratings].nil?) || (params[:sort].nil? && !session[:sort].nil?)
      
