@@ -29,7 +29,6 @@ class: 'form-check-input' %>
   </thead>
   <tbody>
     <% @movies.each do |movie| %>
-    
       <tr>
         <td>
           <%= movie.title %>
@@ -46,6 +45,5 @@ class: 'form-check-input' %>
       </tr>
     <% end %>
   </tbody>
- 
 </table>
 <%= link_to 'Add new movie', new_movie_path, :class => 'btn btn-primary' %>
